@@ -80,3 +80,29 @@ it('allows a user to delete their tweet', function () {
   $response->assertStatus(200);
   $response->assertJson(['message' => 'Tweet deleted successfully']);
 });
+
+// 更新のテスト（他のユーザのデータが更新できないことを確認）
+it('does not allow unauthorized users to update a tweet', function () {
+  $owner = User::factory()->create();
+  $otherUser = User::factory()->create();
+  $tweet = Tweet::factory()->create(['user_id' => $owner->id]);
+
+  $this->actingAs($otherUser);
+
+  $response = $this->putJson('/api/tweets/' . $tweet->id, ['tweet' => 'Updated tweet']);
+
+  $response->assertStatus(403); // Forbidden
+});
+
+// 削除のテスト（他のユーザのデータが削除できないことを確認）
+it('does not allow unauthorized users to delete a tweet', function () {
+  $owner = User::factory()->create();
+  $otherUser = User::factory()->create();
+  $tweet = Tweet::factory()->create(['user_id' => $owner->id]);
+
+  $this->actingAs($otherUser);
+
+  $response = $this->deleteJson('/api/tweets/' . $tweet->id);
+
+  $response->assertStatus(403); // Forbidden
+});
