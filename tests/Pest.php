@@ -15,6 +15,8 @@ use Tests\TestCase;
 */
 
 uses(TestCase::class, RefreshDatabase::class)->in('Feature');
+uses(Tests\TestCase::class)->in('Unit');
+uses(\Illuminate\Foundation\Testing\RefreshDatabase::class)->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +30,7 @@ uses(TestCase::class, RefreshDatabase::class)->in('Feature');
 */
 
 expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
+  return $this->toBe(1);
 });
 
 /*
@@ -44,5 +46,5 @@ expect()->extend('toBeOne', function () {
 
 function something()
 {
-    // ..
+  // ..
 }
