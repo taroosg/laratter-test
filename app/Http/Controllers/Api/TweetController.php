@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tweet;
 use App\Services\TweetService;
+use App\Http\Requests\TweetCreateRequest;
 
 class TweetController extends Controller
 {
@@ -28,11 +29,8 @@ class TweetController extends Controller
   /**
    * Store a newly created resource in storage.
    */
-  public function store(Request $request)
+  public function store(TweetCreateRequest $request)
   {
-    $request->validate([
-      'tweet' => 'required|max:255',
-    ]);
     $tweet = $this->tweetService->createTweet($request->only('tweet'), $request->user());
     return response()->json($tweet, 201);
   }
