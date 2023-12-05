@@ -6,6 +6,7 @@ use App\Models\Tweet;
 use Illuminate\Http\Request;
 use App\Services\TweetService;
 use App\Http\Requests\TweetCreateRequest;
+use App\Http\Requests\TweetUpdateRequest;
 
 class TweetController extends Controller
 {
@@ -62,12 +63,8 @@ class TweetController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(Request $request, Tweet $tweet)
+  public function update(TweetUpdateRequest $request, Tweet $tweet)
   {
-    $request->validate([
-      'tweet' => 'required|max:255',
-    ]);
-
     $updatedTweet = $this->tweetService->updateTweet($tweet, $request->all());
 
     return redirect()->route('tweets.show', $tweet);
