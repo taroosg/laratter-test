@@ -29,7 +29,13 @@ class TweetController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $request->validate([
+      'tweet' => 'required|max:255',
+    ]);
+
+    $request->user()->tweets()->create($request->only('tweet'));
+
+    return redirect()->route('tweets.index');
   }
 
   /**
