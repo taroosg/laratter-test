@@ -2,6 +2,9 @@
 
 use App\Models\User;
 use App\Models\Tweet;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
 
 it('allows an authenticated user to like a tweet', function () {
   $user = User::factory()->create();

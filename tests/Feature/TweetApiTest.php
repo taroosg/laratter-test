@@ -3,6 +3,9 @@
 
 use App\Models\Tweet;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
 
 // 作成のテスト
 it('allows authenticated users to create a tweet', function () {
