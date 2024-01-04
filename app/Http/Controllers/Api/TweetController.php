@@ -25,7 +25,7 @@ class TweetController extends Controller
   {
     $this->authorize('viewAny', Tweet::class);
 
-    $tweets = $this->tweetService->getAllTweets();
+    $tweets = $this->tweetService->allTweets();
     return response()->json($tweets);
   }
 

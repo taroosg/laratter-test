@@ -11,7 +11,7 @@ class TweetService
     return $user->tweets()->create($data);
   }
 
-  public function getAllTweets()
+  public function allTweets()
   {
     return Tweet::with('user')->latest()->get();
   }

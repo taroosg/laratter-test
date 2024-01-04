@@ -24,7 +24,7 @@ it('retrieves all tweets', function () {
   Tweet::factory()->count(3)->create();
   $tweetService = new TweetService();
 
-  $tweets = $tweetService->getAllTweets();
+  $tweets = $tweetService->allTweets();
 
   expect($tweets)->toHaveCount(3);
 });
