@@ -3,9 +3,6 @@
 use App\Models\User;
 use App\Models\Tweet;
 use App\Services\TweetLikeService;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
 
 // likeのテスト
 it('adds a like to a tweet', function () {

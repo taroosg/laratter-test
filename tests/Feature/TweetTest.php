@@ -3,9 +3,6 @@
 // 🔽 追加
 use App\Models\Tweet;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
 
 // 🔽一覧取得のテスト
 it('displays tweets', function () {

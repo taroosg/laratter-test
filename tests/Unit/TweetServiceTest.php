@@ -3,9 +3,6 @@
 use App\Models\User;
 use App\Models\Tweet;
 use App\Services\TweetService;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
 
 // 作成のテスト
 it('creates a new tweet', function () {
