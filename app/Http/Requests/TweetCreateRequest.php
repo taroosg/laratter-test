@@ -28,6 +28,15 @@ class TweetCreateRequest extends FormRequest
     ];
   }
 
+  public function messages()
+  {
+    return [
+      'tweet.required' => 'Tweet を入力してください．',
+      'title.string' => 'Tweet は文字列で入力してください．',
+      'title.max' => 'Tweet は255文字以下で入力してください．',
+    ];
+  }
+
   protected function failedValidation(Validator $validator)
   {
     if ($this->expectsJson()) {
