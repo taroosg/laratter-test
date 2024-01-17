@@ -85,11 +85,15 @@ it('allows a user to delete their tweet', function () {
 it('does not allow unauthorized users to update a tweet', function () {
   $owner = User::factory()->create();
   $otherUser = User::factory()->create();
+
   $tweet = Tweet::factory()->create(['user_id' => $owner->id]);
 
-  $this->actingAs($otherUser);
+  $token = $otherUser->createToken('test_token')->plainTextToken;
 
-  $response = $this->putJson('/api/tweets/' . $tweet->id, ['tweet' => 'Updated tweet']);
+  $response = $this->putJson('/api/tweets/' . $tweet->id, ['tweet' => 'Updated tweet'], [
+    'Authorization' => 'Bearer ' . $token
+  ]);
+
 
   $response->assertStatus(403); // Forbidden
 });
@@ -98,11 +102,14 @@ it('does not allow unauthorized users to update a tweet', function () {
 it('does not allow unauthorized users to delete a tweet', function () {
   $owner = User::factory()->create();
   $otherUser = User::factory()->create();
+
   $tweet = Tweet::factory()->create(['user_id' => $owner->id]);
 
-  $this->actingAs($otherUser);
+  $token = $otherUser->createToken('test_token')->plainTextToken;
 
-  $response = $this->deleteJson('/api/tweets/' . $tweet->id);
+  $response = $this->deleteJson('/api/tweets/' . $tweet->id, [], [
+    'Authorization' => 'Bearer ' . $token
+  ]);
 
   $response->assertStatus(403); // Forbidden
 });
