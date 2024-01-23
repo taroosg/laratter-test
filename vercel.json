@@ -2,6 +2,7 @@
   "regions": [
     "hnd1"
   ],
+  "version": 2,
   "builds": [
     {
       "src": "/api/index.php",
