@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTweetRequest;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
 use App\Services\TweetService;
-use App\Http\Requests\TweetCreateRequest;
-use App\Http\Requests\TweetUpdateRequest;
+use App\Http\Requests\UpdateTweetRequest;
 
 class TweetController extends Controller
 {
@@ -41,7 +41,7 @@ class TweetController extends Controller
   /**
    * Store a newly created resource in storage.
    */
-  public function store(TweetCreateRequest $request)
+  public function store(StoreTweetRequest $request)
   {
     $this->authorize('create', Tweet::class);
 
@@ -73,7 +73,7 @@ class TweetController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(TweetUpdateRequest $request, Tweet $tweet)
+  public function update(UpdateTweetRequest $request, Tweet $tweet)
   {
     $this->authorize('update', $tweet);
 

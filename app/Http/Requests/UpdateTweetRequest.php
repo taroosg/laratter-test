@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class TweetUpdateRequest extends FormRequest
+class UpdateTweetRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -21,7 +21,7 @@ class TweetUpdateRequest extends FormRequest
    *
    * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
    */
-  public function rules(): array
+  function rules(): array
   {
     return [
       'tweet' => 'required|string|max:255',
